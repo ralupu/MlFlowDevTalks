@@ -14,8 +14,8 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from azureml.core import Workspace
 
 
-# ws = Workspace.from_config('azure_config.json')
-# mlflow.set_tracking_uri(ws.get_mlflow_tracking_uri())
+ws = Workspace.from_config('azure_config.json')
+mlflow.set_tracking_uri(ws.get_mlflow_tracking_uri())
 
 
 def fit_model(model, x, y):
@@ -97,7 +97,7 @@ if __name__ == "__main__":
                     mlflow.log_metric ( 'recall', recall[1] )
                     mlflow.log_metric ( 'fscore', fscore[1] )
 
-                    # tracking_url_type_store = urlparse ( mlflow.get_tracking_uri () ).scheme
+                    tracking_url_type_store = urlparse ( mlflow.get_tracking_uri () ).scheme
                     mlflow.sklearn.log_model ( xgb_fit, "model")
 
 
